@@ -151,10 +151,10 @@ public class NavigationTest extends BaseTest {
     private void runOpenPictureTopicScenario() {
         openHomePage();
 
-        WebElement topicLink = waitForVisible("(//h2[contains(@class,'mainpage')]/a[contains(@href,'/forum2/topic') and contains(@class,'subtitle')])[1]");
+        WebElement topicLink = waitForVisible("(//h2[contains(@class,'mainpage')]/child::a[contains(@href,'/forum2/topic') and contains(@class,'subtitle')])[1]");
         pauseBetweenSteps();
         String topicTitle = topicLink.getText().trim();
-        clickWithScroll("(//h2[contains(@class,'mainpage')]/a[contains(@href,'/forum2/topic') and contains(@class,'subtitle')])[1]");
+        clickWithScroll("(//h2[contains(@class,'mainpage')]/child::a[contains(@href,'/forum2/topic') and contains(@class,'subtitle')])[1]");
 
         WebElement topicHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(
             By.xpath("//h1[@id='main-title']/a[contains(@class,'subtitle')]")
@@ -188,12 +188,12 @@ public class NavigationTest extends BaseTest {
         openHomePage();
 
         WebElement commentsLink = waitForVisible(
-            "(//b[contains(@class,'icon-comments')]/a[contains(@href,'/forum2/topic') or contains(@href,'/forum27/topic') or contains(@href,'/forum28/topic')])[1]"
+            "(//b[contains(@class,'icon-comments')]/child::a[contains(@href,'/forum2/topic') or contains(@href,'/forum27/topic') or contains(@href,'/forum28/topic')])[1]"
         );
         String targetUrl = commentsLink.getAttribute("href");
         pauseBetweenSteps();
         clickWithScroll(
-            "(//b[contains(@class,'icon-comments')]/a[contains(@href,'/forum2/topic') or contains(@href,'/forum27/topic') or contains(@href,'/forum28/topic')])[1]"
+            "(//b[contains(@class,'icon-comments')]/child::a[contains(@href,'/forum2/topic') or contains(@href,'/forum27/topic') or contains(@href,'/forum28/topic')])[1]"
         );
 
         wait.until(ExpectedConditions.urlToBe(targetUrl));
@@ -291,16 +291,16 @@ public class NavigationTest extends BaseTest {
     private void runBreadcrumbBackToSectionScenario() {
         openHomePage();
 
-        clickWithScroll("(//h2[contains(@class,'mainpage')]/a[contains(@href,'/forum2/topic') and contains(@class,'subtitle')])[1]");
+        clickWithScroll("(//h2[contains(@class,'mainpage')]/child::a[contains(@href,'/forum2/topic') and contains(@class,'subtitle')])[1]");
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(
             By.xpath("//h1[@id='main-title']/a[contains(@class,'subtitle')]")
         ));
         pauseBetweenSteps();
-        clickWithScroll("//div[@id='navstrip']//a[normalize-space()='Картинки' and contains(@href,'/forum2/')]");
+        clickWithScroll("//div[@id='navstrip']/descendant::a[normalize-space()='Картинки' and contains(@href,'/forum2/')]");
 
         WebElement sectionBreadcrumb = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//div[@id='navstrip']//a[normalize-space()='Картинки']")
+            By.xpath("//div[@id='navstrip']/descendant::a[normalize-space()='Картинки']")
         ));
         WebElement firstTopic = wait.until(ExpectedConditions.visibilityOfElementLocated(
             By.xpath("(//a[contains(@href,'/forum2/topic') and contains(@class,'subtitle')])[1]")
