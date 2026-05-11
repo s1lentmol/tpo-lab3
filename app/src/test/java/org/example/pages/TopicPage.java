@@ -48,7 +48,7 @@ public class TopicPage extends BasePage {
     }
 
     public SectionPage goToPicturesSectionViaBreadcrumb() {
-        clickWithScroll("//div[@id='navstrip']/descendant::a[normalize-space()='Картинки' and contains(@href,'/forum2/')]");
+        clickWithScroll("//a[normalize-space()='Картинки' and contains(@href,'/forum2/') and ancestor::div[@id='navstrip']]");
         wait.until(ExpectedConditions.urlContains("/forum2/"));
         return new SectionPage(driver, wait);
     }

@@ -76,18 +76,18 @@ public class HomePage extends BasePage {
 
     public String getFirstPictureTopicTitle() {
         return waitForVisible(
-            "(//h2[contains(@class,'mainpage')]/child::a[contains(@href,'/forum2/topic') and contains(@class,'subtitle')])[1]"
+            "(//a[contains(@href,'/forum2/topic') and contains(@class,'subtitle') and parent::h2[contains(@class,'mainpage')]])[1]"
         ).getText().trim();
     }
 
     public TopicPage openFirstPictureTopic() {
-        clickWithScroll("(//h2[contains(@class,'mainpage')]/child::a[contains(@href,'/forum2/topic') and contains(@class,'subtitle')])[1]");
+        clickWithScroll("(//a[contains(@href,'/forum2/topic') and contains(@class,'subtitle') and parent::h2[contains(@class,'mainpage')]])[1]");
         return new TopicPage(driver, wait);
     }
 
     public TopicPage openTopicViaComments() {
         clickWithScroll(
-            "(//b[contains(@class,'icon-comments')]/child::a[contains(@href,'/forum2/topic') or contains(@href,'/forum27/topic') or contains(@href,'/forum28/topic')])[1]"
+            "(//a[normalize-space()='Комментарии' and (contains(@href,'/forum2/topic') or contains(@href,'/forum27/topic') or contains(@href,'/forum28/topic')) and ancestor::b[contains(@class,'icon-comments')]])[1]"
         );
         return new TopicPage(driver, wait);
     }
